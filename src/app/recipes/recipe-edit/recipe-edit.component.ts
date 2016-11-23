@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, OnChanges, SimpleChanges} from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs/Rx";
 import {
@@ -17,7 +17,7 @@ import { Recipe } from "../recipe";
   templateUrl: 'recipe-edit.component.html',
   styles: []
 })
-export class RecipeEditComponent implements OnInit, OnDestroy {
+export class RecipeEditComponent implements OnInit, OnDestroy, OnChanges {
   recipeForm: FormGroup;
   private recipeIndex: number;
   private recipe: Recipe;
@@ -43,6 +43,10 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
         this.initForm();
       }
     );
+  }
+  
+  ngOnChanges(changes){
+    console.log(changes);
   }
 
   onSubmit() {
